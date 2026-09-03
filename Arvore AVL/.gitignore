@@ -1,0 +1,5 @@
+# executáveis 
+*.exe
+
+# arquivos gerados pelo vscode ao rodar o programa
+.vscode

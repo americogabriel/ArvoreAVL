@@ -39,42 +39,32 @@ class Elemento{
 
                 // se o valor a ser adicionado for menor que o valor do nó
                 if(valor < no->valor){ 
-                    // verifica se o nó tem algum filho a esquerda, se tiver, roda o while até o nó folha
-                    while(no->esq != NULL){
+                    //  verifica se existe um filho á esquerda do nó
+                    if(no->esq != NULL){
                         no = no->esq;
                         caminha_esq_dir(no,valor);
+                        return; // quando o o programa sai da recursão quer dizer que o nó folha já foi encontrado e o valor já foi adicionado na direita ou esquerda,portanto, ja pode voltar todas as recursões e finalizar o método
                     }
-                    // após já estarmos no último nó da esquerda, verificamos se o valor a ser adicionado é maior ou menor que ele
-                    if(valor >= no->valor){ // se maior
-                        if(no->dir == NULL){ // se não tiver filho a direita
-                            no->dir = new Elemento(valor);
-                            return;
-                        }
-                        else{ // se tiver
-                            caminha_esq_dir(no,valor); // caminha pela sub-árvore a direita até achar o lugar de adicionar o valor
-                        }
-                    }
-                    else{ // se menor adiciona à esquerda
-                        no->esq = new Elemento(valor);
+                    // após já estarmos no último nó da esquerda
+
+                    // se esquerda for NULL
+                    else{
+                        no->esq = new Elemento(valor); // adiciona o valor à esquerda
                     }
                 }
                 //  se o valor a ser adicionado for maior ou igual ao valor do nó
-                else{ 
-                    while(no->dir != NULL){
+                else{
+                    // verifica se existe um filho á direita do nó 
+                    if(no->dir != NULL){ 
                         no = no->dir;
                         caminha_esq_dir(no,valor);
+                        return; // quando o o programa sai da recursão quer dizer que o nó folha já foi encontrado e o valor já foi adicionado,portanto, ja pode voltar todas as recursões e finalizar o método
                     }
-                    // após já estarmos no último nó da direita, verificamos se o valor a ser adicionado é maior ou menor que ele 
-                    if(valor >= no->valor){ // se maior adiciona a direita
-                        no->dir = new Elemento(valor); 
-                    }
-                    else{ // se menor adiciona a esquerda
-                        if(no->esq == NULL){ // se não tiver filho a esquerda
-                            no->esq = new Elemento(valor);
-                        }
-                        else{ // se tiver
-                            caminha_esq_dir(no,valor); // caminha a sub-árvora da esquerda até achar o lugar de adicionar o valor
-                        }
+                    // após já estarmos no último nó da direita 
+                    
+                    // se direita é NULL
+                    else{ 
+                        no->dir = new Elemento(valor); // adiciona o elemento á direita
                     }
                 }
             }
@@ -91,6 +81,7 @@ class Elemento{
                         
                     }
                 }
+                // se tem valores na esquerda ou na direita
                 else if(dir != NULL || esq != NULL){
                     if(valor >= this->valor){ // se o valor a ser adicionado for maior ou igual ao valor da raiz
                         if(dir != NULL){// se existir um filho à direita da raiz
@@ -111,5 +102,6 @@ class Elemento{
                     
                 }
             }
-
+        
+            
 };

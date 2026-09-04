@@ -12,9 +12,8 @@ int main(){
         cin >> valor_no;
         if(valor_no != -1)
             arvoreAVL.inserir(valor_no);
-            
-    }
+        }
     arvoreAVL.imprime_arvore(&arvoreAVL);
-
+    
     return 0;
 }
